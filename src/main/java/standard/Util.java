@@ -35,6 +35,11 @@ public class Util {
 
             Path filePath = Paths.get(file);
 
+            //파일의 경로(폴더) 미존재시 Null 반환
+            if(filePath.getParent() != null){
+                createDir(filePath.getParent().toString());
+            }
+
             try {
                 Files.writeString(filePath, content, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             } catch (IOException e) {

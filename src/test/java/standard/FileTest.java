@@ -121,4 +121,16 @@ public class FileTest {
         assertThat(Files.exists(Paths.get(dirPath)))
                 .isFalse();
     }
+    @Test
+    @DisplayName("파일 생성시 없는 폴더에 생성시도시 폴더를 생성한 후에 파일 생성")
+    void t8() {
+        // 폴더가 없으면 폴더를 생성하고 파일생성
+        String path = "test/test2/test.txt";
+
+        Util.File.createFile(path);
+
+        boolean rst = Files.exists(Paths.get(path));
+        assertThat(rst)
+                .isTrue();
+    }
 }
