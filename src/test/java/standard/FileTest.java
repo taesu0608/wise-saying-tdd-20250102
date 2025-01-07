@@ -133,4 +133,17 @@ public class FileTest {
         assertThat(rst)
                 .isTrue();
     }
+
+    @Test
+    @DisplayName("파일 삭제 -> 폴더가 비어있지 않을 때 삭제 여부")
+    void t9() {
+        // 폴더가 없으면 폴더를 생성하고 파일생성
+        String path = "test/test2/test.txt";
+
+        Util.File.deleteForce(path); //강제 삭제
+
+        boolean rst = Files.exists(Paths.get(path));
+        assertThat(rst)
+                .isFalse();
+    }
 }
