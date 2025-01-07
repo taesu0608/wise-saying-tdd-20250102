@@ -3,8 +3,10 @@ package standard;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 public class Util {
+
     public static class File {
 
         public static void test() {
@@ -99,6 +101,20 @@ public class Util {
                 System.out.println("디렉토리 생성 실패");
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static class Json{
+
+        public static String mapToJson(Map<String, Object> map){
+            String tmp ="";
+            for(String key: map.keySet()){
+                String value = (String)map.get("name");
+                tmp = "{\n" + "    \"%s\" : " + "\"%s\"" + "\n}";
+                tmp = tmp.formatted(key,value);
+            }
+
+            return tmp;
         }
     }
 }
