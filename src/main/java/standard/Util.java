@@ -14,7 +14,6 @@ public class Util {
         }
 
         public static void createFile(String pathValue) {
-
             write(pathValue, "");
         }
 
@@ -48,10 +47,21 @@ public class Util {
 
             Path filePath = Paths.get(file);
 
+            if(!Files.exists(filePath)) return;
+
             try {
                 Files.delete(filePath);
             } catch (IOException e) {
                 System.out.println("파일 삭제 실패");
+                e.printStackTrace();
+            }
+        }
+
+        public static void createDir(String dirPath) {
+            try {
+                Files.createDirectories(Paths.get(dirPath));
+            } catch (IOException e) {
+                System.out.println("디렉토리 생성 실패");
                 e.printStackTrace();
             }
         }

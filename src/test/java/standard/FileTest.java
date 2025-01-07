@@ -1,14 +1,34 @@
 package standard;
 
+import org.assertj.core.api.StandardSoftAssertionsProvider;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FileTest {
 
+    // 테스트 전처리
+    @BeforeAll
+    static void beforeALL() {
+        System.out.println("테스트 실행 전에 한번 실행");
+        Util.File.createDir("test");
+    }
+
+    @AfterAll
+    static void afterAll(){
+        System.out.println("테스트 실행 후에 한번 실행");
+        Util.File.delete("test");
+    }
+
+
+
+    // 테스트 후처리
     @Test
     @DisplayName("최초의 파일 테스트")
     void t1() {
@@ -77,8 +97,28 @@ public class FileTest {
     @Test
     @DisplayName("폴더 생성")
     void t6() {
+
         String dirPath = "test";
 
-        Util.File.
+        Util.File.createDir(dirPath);
+
+        assertThat(Files.exists(Paths.get(dirPath)))
+                .isTrue();
+
+        assertThat(Files.isDirectory(Path.of(dirPath)))
+                .isTrue();
+
+    }
+
+    @Test
+    @DisplayName("폴더 삭제")
+    void t7() {
+
+        String dirPath = "test";
+
+        Util.File.delete(dirPath);
+
+        assertThat(Files.exists(Paths.get(dirPath)))
+                .isFalse();
     }
 }
