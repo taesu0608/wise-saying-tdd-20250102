@@ -23,7 +23,7 @@ public class FileTest {
     @AfterAll
     static void afterAll(){
         System.out.println("테스트 실행 후에 한번 실행");
-        Util.File.delete("test");
+        Util.File.deleteForce("test");
     }
 
 
@@ -116,7 +116,7 @@ public class FileTest {
 
         String dirPath = "test";
 
-        Util.File.delete(dirPath);
+        Util.File.deleteForce(dirPath);
 
         assertThat(Files.exists(Paths.get(dirPath)))
                 .isFalse();
