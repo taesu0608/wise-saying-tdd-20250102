@@ -1,4 +1,6 @@
-package domain.wiseSaying;
+package domain.wiseSaying.repository;
+
+import domain.wiseSaying.WiseSaying;
 
 import java.util.ArrayList;
 import java.util.List;
